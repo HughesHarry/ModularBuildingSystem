@@ -21,7 +21,10 @@ public class BuildingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(newObject != null)
+        {
+            newObject.transform.position = position;
+        }
     }
     private void FixedUpdate()
     {
@@ -31,5 +34,10 @@ public class BuildingManager : MonoBehaviour
         {
             position = hit.point;
         }
+    }
+
+    public void SelectObject(int index)
+    {
+        newObject = Instantiate(objects[index], position, transform.rotation);
     }
 }
