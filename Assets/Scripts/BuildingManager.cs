@@ -29,12 +29,16 @@ public class BuildingManager : MonoBehaviour
         {
             newObject.transform.position = position;
 
-            if(Input.GetKeyDown(KeyCode.W)) { newObject.transform.Rotate(Vector3.right, 45); }
-            if(Input.GetKeyDown(KeyCode.S)) { newObject.transform.Rotate(Vector3.left, 45); }
-            if (Input.GetKeyDown(KeyCode.E)) { newObject.transform.Rotate(Vector3.forward, 45); }
-            if (Input.GetKeyDown(KeyCode.Q)) { newObject.transform.Rotate(Vector3.back, 45); }
-            if (Input.GetKeyDown(KeyCode.A)) { newObject.transform.Rotate(Vector3.up, 45); }
-            if (Input.GetKeyDown(KeyCode.D)) { newObject.transform.Rotate(Vector3.down, 45); }
+            // Rotate object when key is pressed
+            if (Input.GetKeyDown(KeyCode.W)) { RotateObject(Vector3.right, 45); }
+            if (Input.GetKeyDown(KeyCode.S)) { RotateObject(Vector3.left, 45); }
+            if (Input.GetKeyDown(KeyCode.D)) { RotateObject(Vector3.forward, 45); }
+            if (Input.GetKeyDown(KeyCode.A)) { RotateObject(Vector3.back, 45); }
+            if (Input.GetKeyDown(KeyCode.Q)) { RotateObject(Vector3.up, 45); }
+            if (Input.GetKeyDown(KeyCode.E)) { RotateObject(Vector3.down, 45); }
+
+
+
             // Keep object on mouse pointer until it is placed.
             if (Input.GetMouseButtonDown(0))
             {
@@ -58,6 +62,11 @@ public class BuildingManager : MonoBehaviour
     public void AddObject(int index)
     {
         newObject = Instantiate(objects[index], position, transform.rotation);
+    }
+
+    public void RotateObject(Vector3 vector, int degree)
+    {
+        newObject.transform.Rotate(vector, degree);
     }
 
 }
