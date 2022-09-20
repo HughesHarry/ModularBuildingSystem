@@ -21,9 +21,18 @@ public class BuildingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(newObject != null)
+        if (Input.GetKeyDown(KeyCode.Alpha1)) { AddObject(0); }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) { AddObject(1); }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) { AddObject(2); }
+
+        if (newObject != null)
         {
             newObject.transform.position = position;
+            // Keep object on mouse pointer until it is placed.
+            if (Input.GetMouseButtonDown(0))
+            {
+                newObject = null;
+            }
         }
     }
     private void FixedUpdate()
@@ -33,16 +42,11 @@ public class BuildingManager : MonoBehaviour
         if(Physics.Raycast(ray, out hit, rayRange, layerMask))
         {
             position = hit.point;
-            // Keep object on mouse pointer until it is placed.
-            if (Input.GetMouseButtonDown(0))
-            {
-                newObject = null;
-            }
         }
     }
 
     // Creates an object from a predifiend array of objects.
-    public void SelectObject(int index)
+    public void AddObject(int index)
     {
         newObject = Instantiate(objects[index], position, transform.rotation);
     }
