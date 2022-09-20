@@ -37,7 +37,9 @@ public class BuildingManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q)) { RotateObject(Vector3.up, 45); }
             if (Input.GetKeyDown(KeyCode.E)) { RotateObject(Vector3.down, 45); }
 
-
+            // Scale object when key is pressed
+            if (Input.GetKeyDown(KeyCode.UpArrow)) { ScaleObject(new Vector3(0.1f, 0.1f, 0.1f)); }
+            if (Input.GetKeyDown(KeyCode.DownArrow)) { ScaleObject(new Vector3(-0.1f, -0.1f, -0.1f)); }
 
             // Keep object on mouse pointer until it is placed.
             if (Input.GetMouseButtonDown(0))
@@ -69,4 +71,13 @@ public class BuildingManager : MonoBehaviour
         newObject.transform.Rotate(vector, degree);
     }
 
+    public void ScaleObject(Vector3 scale)
+    {
+        // Does not allow the object to be scaled below 0.1
+        if(newObject.transform.localScale.x <= 0.1f && scale.x < 0)
+        {
+            return;
+        }
+        newObject.transform.localScale += scale;
+    }
 }
