@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
+    public GameObject[] objects;
+
+    private Vector3 position;
+    private RaycastHit hit;
+    private float rayRange = 1000;
+    [SerializeField] private LayerMask layerMask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +21,14 @@ public class BuildingManager : MonoBehaviour
     void Update()
     {
         
+    }
+    private void FixedUpdate()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if(Physics.Raycast(ray, out hit, rayRange, layerMask))
+        {
+            position = hit.point;
+        }
     }
 }
