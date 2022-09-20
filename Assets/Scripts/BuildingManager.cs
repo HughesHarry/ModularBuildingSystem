@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour
 {
     public GameObject[] objects;
+    public GameObject newObject;
 
     private Vector3 position;
     private RaycastHit hit;
