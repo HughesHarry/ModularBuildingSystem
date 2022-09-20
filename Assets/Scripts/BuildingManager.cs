@@ -28,11 +28,20 @@ public class BuildingManager : MonoBehaviour
         if (newObject != null)
         {
             newObject.transform.position = position;
+
+            if(Input.GetKeyDown(KeyCode.W)) { newObject.transform.Rotate(Vector3.right, 45); }
+            if(Input.GetKeyDown(KeyCode.S)) { newObject.transform.Rotate(Vector3.left, 45); }
+            if (Input.GetKeyDown(KeyCode.E)) { newObject.transform.Rotate(Vector3.forward, 45); }
+            if (Input.GetKeyDown(KeyCode.Q)) { newObject.transform.Rotate(Vector3.back, 45); }
+            if (Input.GetKeyDown(KeyCode.A)) { newObject.transform.Rotate(Vector3.up, 45); }
+            if (Input.GetKeyDown(KeyCode.D)) { newObject.transform.Rotate(Vector3.down, 45); }
             // Keep object on mouse pointer until it is placed.
             if (Input.GetMouseButtonDown(0))
             {
                 newObject = null;
             }
+
+
         }
     }
     private void FixedUpdate()
@@ -50,4 +59,5 @@ public class BuildingManager : MonoBehaviour
     {
         newObject = Instantiate(objects[index], position, transform.rotation);
     }
+
 }
