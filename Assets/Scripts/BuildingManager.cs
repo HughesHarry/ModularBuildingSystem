@@ -33,9 +33,15 @@ public class BuildingManager : MonoBehaviour
         if(Physics.Raycast(ray, out hit, rayRange, layerMask))
         {
             position = hit.point;
+            // Keep object on mouse pointer until it is placed.
+            if (Input.GetMouseButtonDown(0))
+            {
+                newObject = null;
+            }
         }
     }
 
+    // Creates an object from a predifiend array of objects.
     public void SelectObject(int index)
     {
         newObject = Instantiate(objects[index], position, transform.rotation);
