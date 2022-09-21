@@ -7,6 +7,7 @@ public class BuildingManager : MonoBehaviour
 {
     public GameObject[] objects;
     public GameObject selectedObject;
+    public GameObject panel;
 
     private Vector3 position;
     private RaycastHit hit;
@@ -14,7 +15,6 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private LayerMask layerMaskObject;
     private bool objectClicked;
-    private Material Material;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +87,7 @@ public class BuildingManager : MonoBehaviour
     public void AddObject(int index)
     {
         selectedObject = Instantiate(objects[index], position, transform.rotation);
+        selectedObject.GetComponent<Renderer>().material.color = panel.GetComponent<Image>().color;
     }
 
     public void RotateObject(Vector3 vector, int degree)
