@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildingManager : MonoBehaviour
 {
     public GameObject[] objects;
-    public GameObject newObject;
+    public GameObject selectedObject;
 
     private Vector3 position;
     private RaycastHit hit;
@@ -32,9 +32,9 @@ public class BuildingManager : MonoBehaviour
             objectClicked = true;
         }
 
-        if (newObject != null)
+        if (selectedObject != null)
         {
-            newObject.transform.position = position;
+            selectedObject.transform.position = position;
 
             // Rotate object when key is pressed
             if (Input.GetKeyDown(KeyCode.W)) { RotateObject(Vector3.right, 45); }
@@ -48,12 +48,12 @@ public class BuildingManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow)) { ScaleObject(new Vector3(0.1f, 0.1f, 0.1f)); }
             if (Input.GetKeyDown(KeyCode.DownArrow)) { ScaleObject(new Vector3(-0.1f, -0.1f, -0.1f)); }
 
-            if (Input.GetKeyDown(KeyCode.X)) { Destroy(newObject); }
+            if (Input.GetKeyDown(KeyCode.X)) { Destroy(selectedObject); }
 
             // Keep object on mouse pointer until it is placed.
             if (Input.GetMouseButtonDown(0))
             {
-                newObject = null;
+                selectedObject = null;
             }
         }
 
@@ -71,7 +71,7 @@ public class BuildingManager : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, rayRange, layerMaskObject))
             {
-                newObject = hit.collider.gameObject;
+                selectedObject = hit.collider.gameObject;
                 objectClicked = false;
             }
         }
@@ -81,21 +81,21 @@ public class BuildingManager : MonoBehaviour
     // Creates an object from a predifiend array of objects.
     public void AddObject(int index)
     {
-        newObject = Instantiate(objects[index], position, transform.rotation);
+        selectedObject = Instantiate(objects[index], position, transform.rotation);
     }
 
     public void RotateObject(Vector3 vector, int degree)
     {
-        newObject.transform.Rotate(vector, degree);
+        selectedObject.transform.Rotate(vector, degree);
     }
 
     public void ScaleObject(Vector3 scale)
     {
         // Does not allow the object to be scaled below 0.1
-        if(newObject.transform.localScale.x <= 0.1f && scale.x < 0)
+        if(selectedObject.transform.localScale.x <= 0.1f && scale.x < 0)
         {
             return;
         }
-        newObject.transform.localScale += scale;
+        selectedObject.transform.localScale += scale;
     }
 }
