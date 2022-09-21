@@ -19,7 +19,10 @@ public class ObjectInfo : MonoBehaviour
     {
         if (BuildingManager.selectedObject != null)
         {
-            objectInfo.text = "Object Name: " + BuildingManager.selectedObject.name + "\nPostion: " + BuildingManager.selectedObject.transform.position.ToString();
+            objectInfo.text = "Object Name: " + BuildingManager.selectedObject.name +
+                "\nPosition: " + BuildingManager.selectedObject.transform.position.ToString() +
+                "\nDimensions: " + BuildingManager.selectedObject.transform.localScale.ToString() +
+                "\nRotation: " + BuildingManager.selectedObject.transform.rotation.eulerAngles.ToString();
         }
     }
 }

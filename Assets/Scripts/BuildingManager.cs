@@ -14,6 +14,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private LayerMask layerMaskObject;
     private bool objectClicked;
+    private Material Material;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +50,11 @@ public class BuildingManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow)) { ScaleObject(new Vector3(0.1f, 0.1f, 0.1f)); }
             if (Input.GetKeyDown(KeyCode.DownArrow)) { ScaleObject(new Vector3(-0.1f, -0.1f, -0.1f)); }
 
+            // Delete object when key is pressed
             if (Input.GetKeyDown(KeyCode.X)) { Destroy(selectedObject); }
+
+            // Edit RGB values with keys
+            if (Input.GetKeyDown(KeyCode.R)) {  }
 
             // Keep object on mouse pointer until it is placed.
             if (Input.GetMouseButtonDown(0))
