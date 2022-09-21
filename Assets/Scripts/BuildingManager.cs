@@ -48,6 +48,8 @@ public class BuildingManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow)) { ScaleObject(new Vector3(0.1f, 0.1f, 0.1f)); }
             if (Input.GetKeyDown(KeyCode.DownArrow)) { ScaleObject(new Vector3(-0.1f, -0.1f, -0.1f)); }
 
+            if (Input.GetKeyDown(KeyCode.X)) { Destroy(newObject); }
+
             // Keep object on mouse pointer until it is placed.
             if (Input.GetMouseButtonDown(0))
             {
