@@ -11,6 +11,8 @@ public class BuildingManager : MonoBehaviour
     private RaycastHit hit;
     private float rayRange = 1000;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private LayerMask layerMaskObject;
+    private bool objectClicked;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,11 @@ public class BuildingManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1)) { AddObject(0); }
         if (Input.GetKeyDown(KeyCode.Alpha2)) { AddObject(1); }
         if (Input.GetKeyDown(KeyCode.Alpha3)) { AddObject(2); }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            objectClicked = true;
+        }
 
         if (newObject != null)
         {
@@ -46,9 +53,8 @@ public class BuildingManager : MonoBehaviour
             {
                 newObject = null;
             }
-
-
         }
+
     }
     private void FixedUpdate()
     {
@@ -58,6 +64,16 @@ public class BuildingManager : MonoBehaviour
         {
             position = hit.point;
         }
+
+        if (objectClicked)
+        {
+            if (Physics.Raycast(ray, out hit, rayRange, layerMaskObject))
+            {
+                newObject = hit.collider.gameObject;
+                objectClicked = false;
+            }
+        }
+        
     }
 
     // Creates an object from a predifiend array of objects.
