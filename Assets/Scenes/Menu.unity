@@ -638,7 +638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.001533, y: -263.95}
+  m_AnchoredPosition: {x: -0.001533, y: -283.95}
   m_SizeDelta: {x: 240.66, y: 78.7962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &148248841
@@ -784,7 +784,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000013358, y: 138.5}
+  m_AnchoredPosition: {x: -0.0030868, y: 163.95}
   m_SizeDelta: {x: 240.6631, y: 78.7962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &361152921
@@ -1275,10 +1275,15 @@ MonoBehaviour:
     Rotate Selected
     Object: W, A, S, D, Q, E
 
-    Change Dimensions: Hold X, Y, Z And Scroll
+    Change Dimensions: Hold X, Y, Z + Scroll
 
     Delete
     Object: Delete
+
+    Translate Camera: Hold LShift + W, A, S, Q, E
+
+    Rotate
+    Camera: Hold LControl + Mouse
 
 '
   m_isRightToLeft: 0
