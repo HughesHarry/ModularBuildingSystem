@@ -15,6 +15,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private LayerMask layerMaskObject;
     private bool objectClicked;
+    private float scrollAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -51,10 +52,24 @@ public class BuildingManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.DownArrow)) { ScaleObject(new Vector3(-0.1f, -0.1f, -0.1f)); }
 
             // Delete object when key is pressed
-            if (Input.GetKeyDown(KeyCode.X)) { Destroy(selectedObject); }
+            if (Input.GetKeyDown(KeyCode.Delete)) { Destroy(selectedObject); }
 
-            // Edit RGB values with keys
-            if (Input.GetKeyDown(KeyCode.R)) {  }
+            // Change induvidual dimension of object with scroll
+            if (Input.GetKey(KeyCode.X))
+            {
+                scrollAmount = Input.mouseScrollDelta.y;
+                ScaleObject(new Vector3(scrollAmount, 0, 0));
+            }
+            if (Input.GetKey(KeyCode.Y))
+            {
+                scrollAmount = Input.mouseScrollDelta.y;
+                ScaleObject(new Vector3(0, scrollAmount, 0));
+            }
+            if (Input.GetKey(KeyCode.Z))
+            {
+                scrollAmount = Input.mouseScrollDelta.y;
+                ScaleObject(new Vector3(0, 0, scrollAmount));
+            }
 
             // Keep object on mouse pointer until it is placed.
             if (Input.GetMouseButtonDown(0))
@@ -104,4 +119,6 @@ public class BuildingManager : MonoBehaviour
         }
         selectedObject.transform.localScale += scale;
     }
+
+    
 }
