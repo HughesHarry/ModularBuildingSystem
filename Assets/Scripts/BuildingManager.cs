@@ -40,13 +40,17 @@ public class BuildingManager : MonoBehaviour
             selectedObject.transform.position = position;
 
             // Rotate object when key is pressed
-            if (Input.GetKeyDown(KeyCode.W)) { RotateObject(Vector3.right, 45); }
-            if (Input.GetKeyDown(KeyCode.S)) { RotateObject(Vector3.left, 45); }
-            if (Input.GetKeyDown(KeyCode.D)) { RotateObject(Vector3.forward, 45); }
-            if (Input.GetKeyDown(KeyCode.A)) { RotateObject(Vector3.back, 45); }
-            if (Input.GetKeyDown(KeyCode.Q)) { RotateObject(Vector3.up, 45); }
-            if (Input.GetKeyDown(KeyCode.E)) { RotateObject(Vector3.down, 45); }
-
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                if (Input.GetKeyDown(KeyCode.W)) { RotateObject(Vector3.right, 45); }
+                if (Input.GetKeyDown(KeyCode.S)) { RotateObject(Vector3.left, 45); }
+                if (Input.GetKeyDown(KeyCode.D)) { RotateObject(Vector3.forward, 45); }
+                if (Input.GetKeyDown(KeyCode.A)) { RotateObject(Vector3.back, 45); }
+                if (Input.GetKeyDown(KeyCode.Q)) { RotateObject(Vector3.up, 45); }
+                if (Input.GetKeyDown(KeyCode.E)) { RotateObject(Vector3.down, 45); }
+            }
+           
+            
             // Scale object when key is pressed
             if (Input.GetKeyDown(KeyCode.UpArrow)) { ScaleObject(new Vector3(0.1f, 0.1f, 0.1f)); }
             if (Input.GetKeyDown(KeyCode.DownArrow)) { ScaleObject(new Vector3(-0.1f, -0.1f, -0.1f)); }
@@ -57,7 +61,7 @@ public class BuildingManager : MonoBehaviour
             // Change induvidual dimension of object with scroll
             if (Input.GetKey(KeyCode.X))
             {
-                scrollAmount = Input.mouseScrollDelta.y;
+                scrollAmount = Input.mouseScrollDelta.y / 10;
                 ScaleObject(new Vector3(scrollAmount, 0, 0));
             }
             if (Input.GetKey(KeyCode.Y))
