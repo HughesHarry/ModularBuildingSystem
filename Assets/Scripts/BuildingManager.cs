@@ -66,12 +66,12 @@ public class BuildingManager : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.Y))
             {
-                scrollAmount = Input.mouseScrollDelta.y;
+                scrollAmount = Input.mouseScrollDelta.y / 10;
                 ScaleObject(new Vector3(0, scrollAmount, 0));
             }
             if (Input.GetKey(KeyCode.Z))
             {
-                scrollAmount = Input.mouseScrollDelta.y;
+                scrollAmount = Input.mouseScrollDelta.y / 10;
                 ScaleObject(new Vector3(0, 0, scrollAmount));
             }
 
@@ -117,7 +117,7 @@ public class BuildingManager : MonoBehaviour
     public void ScaleObject(Vector3 scale)
     {
         // Does not allow the object to be scaled below 0.1
-        if(selectedObject.transform.localScale.x <= 0.1f && scale.x < 0)
+        if(selectedObject.transform.localScale.x <= 0.1f && scale.x < 0 || selectedObject.transform.localScale.y <= 0.1f && scale.y < 0 || selectedObject.transform.localScale.z <= 0.1f && scale.z < 0)
         {
             return;
         }
